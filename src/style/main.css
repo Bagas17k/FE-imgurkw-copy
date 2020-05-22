@@ -1,0 +1,40 @@
+/* CSS card content component */
+.card-image {
+    background-color: rgb(104, 97, 97);
+    color: white;
+    font-size: 16px;
+}
+
+.simbol-card {
+    font-size: 13px;
+    color: lightgray;
+}
+
+/* CSS home main body */
+.main-card {
+    background-color: #2e3035;
+}
+
+/* CSS footer*/
+.footer-list {
+    display: flex;
+}
+
+.footer {
+    box-sizing: border-box;
+    color: white;
+    font-size: 13px;
+}
+
+.pop-up-footer {
+    list-style-type: none;
+    font-size: 13px;
+}
+
+.popover-footer {
+    background-color: #2e3035;
+}
+
+#popover-positioned-top {
+    background-color: #2e3035;
+}
