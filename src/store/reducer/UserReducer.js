@@ -15,7 +15,17 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 isLogin: false
             }
-            default:
-                return state
+            case 'SUCCES_LOGIN':
+                return {
+                    ...state,
+                    isLogin: true
+                }
+                case 'SUCCES_LOGOUT':
+                    return {
+                        ...state,
+                        isLogin: false
+                    }
+                    default:
+                        return state
     }
 }

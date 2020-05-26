@@ -26,3 +26,10 @@ export const showLess = (props) => {
     type: 'SHOW_LESS'
   }
 }
+
+export const changeInputImage = (e) => {
+  return {
+    type: "CHANGE_IMAGE_TYPE",
+    payload: e,
+  }
+}

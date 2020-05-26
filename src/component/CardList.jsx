@@ -1,14 +1,16 @@
 import React from "react";
-import { Jumbotron, Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import TagCard from "../component/TagCard";
+import TopHeader from "../component/TopHeader";
 import "../style/main.css";
 
 const TagsList = (props) => {
   const numberOfItems = props.showMore ? props.tag.length : 4;
   return (
     <div>
-      <Jumbotron className="cardlist" fluid>
+      <div>
+        <TopHeader doLogout={props.doLogout} {...props} />
         <Container>
           <h1 className="d-flex justify-content-center">
             You're already awesome.
@@ -42,7 +44,7 @@ const TagsList = (props) => {
             })}
           </Row>
         </Container>
-      </Jumbotron>
+      </div>
     </div>
   );
 };

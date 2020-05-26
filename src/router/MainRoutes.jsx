@@ -5,6 +5,7 @@ import store from "../store/index";
 import Home from "../page/Home";
 import Signin from "../page/SignIn";
 import Signup from "../page/SignUp";
+import UploadImage from "../page/UploadImage";
 
 const MainRoute = () => {
   return (
@@ -14,6 +15,7 @@ const MainRoute = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Signin} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/upload/image" component={UploadImage} />
         </Switch>
       </BrowserRouter>
     </Provider>

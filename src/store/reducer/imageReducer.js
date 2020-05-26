@@ -21,7 +21,12 @@ export default function imageReducer(state = initialAtate, action) {
                         ...state,
                         showMore: false
                     }
-                    default:
-                        return state
+                    case 'CHANGE_IMAGE_TYPE':
+                        return {
+                            ...state,
+                            [action.payload.target.name]: action.payload.target.value,
+                        }
+                        default:
+                            return state
     }
 }

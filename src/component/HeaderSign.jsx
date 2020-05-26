@@ -1,14 +1,17 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const HeaderSign = (props) => {
   return (
     <div>
       <Row>
         <Col className="mt-3">
-          <i class="fas fa-info">
-            &nbsp;<span className="text-sign">back to imgur</span>
-          </i>
+          <Link to="/">
+            <i class="fas fa-info">
+              &nbsp;<span className="text-sign">back to imgur</span>
+            </i>
+          </Link>
         </Col>
       </Row>
       <Row>

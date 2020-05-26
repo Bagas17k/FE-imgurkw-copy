@@ -5,8 +5,17 @@ import FooterSign from "../component/FooterSign";
 import SymbolSign from "../component/SymbolSign";
 import { Link } from "react-router-dom";
 import "../style/main.css";
+import { connect } from "react-redux";
+import { changeInputUser, doLogin } from "../store/action/UserAction";
 
 class Signin extends Component {
+  postLogin = async () => {
+    await this.props.doLogin();
+    const isLogin = localStorage.getItem("isLogin");
+    if (isLogin) {
+      this.props.history.push("/");
+    }
+  };
   render() {
     return (
       <div className="signin text-white">
@@ -28,11 +37,16 @@ class Signin extends Component {
               <Row>
                 <Card className="card-form-signin">
                   <Card.Body>
-                    <Form className="form-signin">
+                    <Form
+                      className="form-signin"
+                      onSubmit={(e) => e.preventDefault()}
+                    >
                       <Form.Group controlId="formGroupEmail">
                         <Form.Control
                           className="form-mark"
                           type="text"
+                          name="username"
+                          onChange={(e) => this.props.changeInput(e)}
                           placeholder="Username or email"
                         />
                       </Form.Group>
@@ -40,6 +54,8 @@ class Signin extends Component {
                         <Form.Control
                           className="form-mark"
                           type="password"
+                          name="password"
+                          onChange={(e) => this.props.changeInput(e)}
                           placeholder="Password"
                         />
                       </Form.Group>
@@ -58,7 +74,11 @@ class Signin extends Component {
                   </Link>
                 </Col>
                 <Col sm={4}>
-                  <Button className="button-text" variant="primary">
+                  <Button
+                    onClick={() => this.postLogin()}
+                    className="button-text"
+                    variant="primary"
+                  >
                     Sign In
                   </Button>{" "}
                 </Col>
@@ -72,4 +92,14 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.user.isLogin,
+  };
+};
+
+const mapDispatchToProps = {
+  changeInput: (e) => changeInputUser(e),
+  doLogin,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

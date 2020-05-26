@@ -6,6 +6,7 @@ import TagsList from "../component/CardList";
 import { Col, Row, Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getTag, handleClick, showLess } from "../store/action/imageAction";
+import { doLogout } from "../store/action/UserAction";
 import "../style/main.css";
 
 class Home extends Component {
@@ -22,6 +23,7 @@ class Home extends Component {
           handleClick={this.props.handleClick}
           showLess={this.props.showLess}
           numberOfSlice={this.props.numberOfSlice}
+          doLogout={this.props.doLogout}
           {...this.props}
         />
         <Header />
@@ -48,6 +50,7 @@ const mapStateToProps = (state) => {
     tag: state.image.listTag,
     showMore: state.image.showMore,
     numberOfSlice: state.image.numberOfSlice,
+    isLogin: state.user.isLogin,
   };
 };
 
@@ -55,5 +58,6 @@ const mapDispatchToProps = {
   getTag,
   handleClick,
   showLess,
+  doLogout,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

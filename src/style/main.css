@@ -170,7 +170,7 @@
     border-left: none;
 }
 
-/* CSS jumbotron */
+/* CSS card list */
 .cardlist {
     margin-bottom: -1rem;
 }
@@ -180,7 +180,19 @@
     color: black;
 }
 
+
 .show a:hover {
     text-decoration: none;
     color: black;
+}
+
+/* CSS drop and drag */
+.drop-image {
+    height: 320px;
+    background-color: pink;
+}
+
+.browse-image {
+    height: 272px;
+    background-color: #3c424b;
 }

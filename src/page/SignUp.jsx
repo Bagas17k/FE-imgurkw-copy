@@ -123,7 +123,7 @@ class Signup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    login: state.user.is_login,
+    login: state.user.isLogin,
   };
 };
 
