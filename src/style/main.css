@@ -35,6 +35,152 @@
     background-color: #2e3035;
 }
 
-#popover-positioned-top {
-    background-color: #2e3035;
+.popover-footer li {
+    color: white;
+}
+
+
+
+
+/*CSS Sign in Sign up*/
+.signin {
+    background-color: #141518;
+
+}
+
+.card-img {
+    font-size: 18px;
+    background-color: #141518;
+}
+
+.logo-signin {
+    background-color: #2C2F34;
+}
+
+.form-signin {
+    background-color: #2C2F34;
+
+}
+
+.card-form-signin {
+    background-color: #2C2F34;
+    height: auto;
+
+}
+
+.text-sign {
+    font-size: 13px;
+}
+
+.signin-with p {
+    padding-bottom: -5px;
+}
+
+.form-mark {
+    background-color: #141518;
+    font-size: 13px;
+    width: 325px;
+}
+
+.fb {
+    -webkit-box-shadow: 0px 3px 0px 0px rgba(58, 85, 142, 1);
+    -moz-box-shadow: 0px 3px 0px 0px rgba(58, 85, 142, 1);
+    box-shadow: 0px 3px 0px 0px rgba(58, 85, 142, 1);
+}
+
+.fb:hover {
+    background-color: #3A558E;
+}
+
+.fa-facebook-f {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.twitter {
+    -webkit-box-shadow: 0px 3px 0px 0px rgba(64, 153, 255, 1);
+    -moz-box-shadow: 0px 3px 0px 0px rgba(64, 153, 255, 1);
+    box-shadow: 0px 3px 0px 0px rgba(64, 153, 255, 1);
+}
+
+.fa-twitter {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.twitter:hover {
+    background-color: #4099FF;
+}
+
+.google {
+    -webkit-box-shadow: 0px 3px 0px 0px rgba(66, 133, 244, 1);
+    -moz-box-shadow: 0px 3px 0px 0px rgba(66, 133, 244, 1);
+    box-shadow: 0px 3px 0px 0px rgba(66, 133, 244, 1);
+}
+
+.fa-google {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.google:hover {
+    background-color: #4285F4;
+}
+
+.yahoo {
+    -webkit-box-shadow: 0px 3px 0px 0px rgba(123, 0, 153, 1);
+    -moz-box-shadow: 0px 3px 0px 0px rgba(123, 0, 153, 1);
+    box-shadow: 0px 3px 0px 0px rgba(123, 0, 153, 1);
+}
+
+.fa-yahoo {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.yahoo:hover {
+    background-color: #7B0099;
+    background-size: auto;
+}
+
+.button-text {
+    font-size: 15px;
+    width: 85px;
+}
+
+.option-text {
+    font-size: 13px;
+
+}
+
+.text-signup {
+    color: gray;
+    font-size: 13px;
+}
+
+/* CSS for search */
+.search-bar {
+    width: 150%;
+    background-color: hsla(0, 0%, 100%, .25);
+    opacity: 40%;
+    color: white;
+}
+
+.search-button {
+    border-left: none;
+}
+
+/* CSS jumbotron */
+.cardlist {
+    margin-bottom: -1rem;
+}
+
+.show a {
+    text-decoration: none;
+    color: black;
+}
+
+.show a:hover {
+    text-decoration: none;
+    color: black;
 }

@@ -1,0 +1,27 @@
+const initialAtate = {
+    listTag: [],
+    showMore: false
+
+}
+
+export default function imageReducer(state = initialAtate, action) {
+    switch (action.type) {
+        case 'GET_TAG':
+            return {
+                ...state,
+                listTag: action.payload
+            }
+            case 'SHOW_MORE':
+                return {
+                    ...state,
+                    showMore: true
+                }
+                case 'SHOW_LESS':
+                    return {
+                        ...state,
+                        showMore: false
+                    }
+                    default:
+                        return state
+    }
+}

@@ -5,40 +5,10 @@ import "../style/main.css";
 const Footer = (props) => {
   return (
     <div>
-      <Row className="footer">
+      <Row className="footer mt-4">
         <Col className="footer-list align-self-center" sm={9}>
           <Col xs={2}>
             <p>© 2020 Imgur, Inc</p>
-          </Col>
-          <Col>
-            <p>About</p>
-          </Col>
-          <Col>
-            <p>Emerald</p>
-          </Col>
-          <Col>
-            <p>Press</p>
-          </Col>
-          <Col>
-            <p>Blog</p>
-          </Col>
-          <Col>
-            <p>Privacy</p>
-          </Col>
-          <Col>
-            <p>CCPA</p>
-          </Col>
-          <Col>
-            <p>Terms</p>
-          </Col>
-          <Col>
-            <p>Advertise</p>
-          </Col>
-          <Col xs={2}>
-            <p className="text-center">Ad Choices</p>
-          </Col>
-          <Col>
-            <p>Rules</p>
           </Col>
         </Col>
         <Col sm={1}>
@@ -49,7 +19,7 @@ const Footer = (props) => {
             className="pop-trigger"
             overlay={
               <Popover id={`popover-positioned-${"top"}`}>
-                <Popover.Content className="justify-content-center">
+                <Popover.Content>
                   <Row>
                     <Col>
                       <ul className="pop-up-footer">
