@@ -22,13 +22,13 @@ class Signin extends Component {
         <Container>
           <HeaderSign />
           <Row>
-            <Col className="d-flex justify-content-center signin-with mt-3">
+            <Col className="d-flex justify-content-center signin-with pt-3">
               <p className="text-sign">Sign In with</p>
             </Col>
           </Row>
           <SymbolSign />
           <Row>
-            <Col className="d-flex justify-content-center my-1">
+            <Col className="d-flex justify-content-center py-1">
               <p className="text-sign">or with Imgur</p>
             </Col>
           </Row>
@@ -66,7 +66,7 @@ class Signin extends Component {
             </Container>
           </Row>
           <Row>
-            <Container className="d-flex justify-content-center ml-5 mt-3">
+            <Container className="d-flex justify-content-center pl-5 pt-3">
               <Row>
                 <Col className="d-flex align-items-center" sm={8}>
                   <Link to="/signup">
@@ -85,7 +85,10 @@ class Signin extends Component {
               </Row>
             </Container>
           </Row>
-          <FooterSign />
+
+          <Row className="pt-5">
+            <FooterSign />
+          </Row>
         </Container>
       </div>
     );

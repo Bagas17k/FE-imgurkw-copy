@@ -14,23 +14,21 @@ const TopHeader = (props, postSignout) => {
   };
   return (
     <div>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand>
-          <Link to="/">
-            <img
-              id="logo-header"
-              src={require("../image/Imgur_logo.svg")}
-              alt="logo"
-              width="94px"
-            />
-          </Link>
-        </Navbar.Brand>
+      <Navbar bg="dark" expand="lg">
+        <Link to="/" onClick={props.getImage ? () => props.getImage() : null}>
+          <img
+            id="logo-header"
+            src={require("../image/Imgur_logo.svg")}
+            alt="logo"
+            width="94px"
+          />
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="align-self-center">
+            <Nav.Link className="align-self-center mx-5">
               {isLogin ? (
-                <Link to="/signup">
+                <Link to="/upload/image">
                   <Button variant="success">
                     <i class="far fa-plus-square"></i>&nbsp;NEW POST
                   </Button>

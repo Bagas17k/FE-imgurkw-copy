@@ -9,36 +9,45 @@ const TagsList = (props) => {
   const numberOfItems = props.showMore ? props.tag.length : 4;
   return (
     <div>
-      <div>
-        <TopHeader doLogout={props.doLogout} {...props} />
-        <Container>
-          <h1 className="d-flex justify-content-center">
+      <div className="card-list text-white">
+        <TopHeader
+          doLogout={props.doLogout}
+          getImage={() => props.getImage()}
+          {...props}
+        />
+        <Container className="py-5">
+          <h1 className="d-flex justify-content-center mb-4">
             You're already awesome.
           </h1>
           <Row>
-            <Col>
+            <Col className="ml-5">
               <span>EXPLORE TAGS</span>
             </Col>
             {!props.showMore ? (
-              <Col className="show d-flex justify-content-end">
+              <Col className="show d-flex justify-content-end mr-5">
                 <Link href="" onClick={() => props.handleClick()}>
-                  MORE TAGS
+                  <p className=" text-white">MORE TAGS</p>
                 </Link>
               </Col>
             ) : (
-              <Col className="show d-flex justify-content-end">
+              <Col className="show d-flex justify-content-end mr-5">
                 <Link href="" onClick={() => props.showLess()}>
-                  LESS TAGS
+                  <p className=" text-white">LESS TAGS</p>
                 </Link>
               </Col>
             )}
           </Row>
 
-          <Row>
+          <Row className="px-5">
             {props.tag.slice(0, numberOfItems).map((el, index) => {
               return (
                 <Col className="d-flex justify-content-center" sm={3}>
-                  <TagCard name={el.name} img={el.img_url} />
+                  <TagCard
+                    handleTag={props.handleRouter}
+                    name={el.name}
+                    img={el.img_url}
+                    {...props}
+                  />
                 </Col>
               );
             })}

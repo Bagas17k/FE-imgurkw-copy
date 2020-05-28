@@ -5,15 +5,15 @@ import "../style/main.css";
 const ContentCard = (props) => {
   return (
     <div>
-      <Card style={{ width: "17rem" }} className="card-image my-1">
+      <Card style={{ width: "16rem" }} className="card-image my-1">
         <Card.Img
           variant="top"
+          height={"200px"}
           class="card-img-top"
-          src={require("../image/ciput1.jpg")}
+          src={props.image}
         />
         <Card.Body>
-          <Card.Title>This Image</Card.Title>
-          <Card.Text>Need some change</Card.Text>
+          <Card.Title className="img-title">{props.title}</Card.Title>
         </Card.Body>
         <Container className="simbol-card">
           <Row className="mb-2 text-center">

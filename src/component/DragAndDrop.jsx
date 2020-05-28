@@ -16,36 +16,39 @@ const DragAndDrop = (props) => {
         console.log(binaryStr);
       };
       reader.readAsArrayBuffer(file);
-      console.log("afsasasas", file);
     });
   }, []);
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+  });
 
   return (
-    <div {...getRootProps()}>
-      <input
-        {...getInputProps()}
-        type="file"
-        className="form-control-file"
-        onChange={(e) => props.changeInput(e)}
-        name="img_url"
-      />
-      <div>
-        <Row>
-          <Col
-            className="drop-image d-flex align-items-center justify-content-center"
-            md={{ offset: 4, span: 4 }}
-          >
-            <p className="border text-center">Drop images here</p>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            className="browse-image d-flex align-items-center justify-content-center"
-            md={{ offset: 4, span: 4 }}
-          ></Col>
-        </Row>
+    <div>
+      <div {...getRootProps()}>
+        <input
+          {...getInputProps()}
+          type="file"
+          className="form-control-file"
+          onChange={(e) => props.changeInput(e)}
+          name="img_url"
+        />
+        <div>
+          <Row>
+            <Col
+              className="drop-image d-flex align-items-center justify-content-center"
+              md={{ offset: 4, span: 4 }}
+            >
+              <p className="border text-center">Drop images here</p>
+            </Col>
+          </Row>
+        </div>
       </div>
+      <Row>
+        <Col
+          className="browse-image d-flex align-items-center justify-content-center"
+          md={{ offset: 4, span: 4 }}
+        ></Col>
+      </Row>
     </div>
   );
 };

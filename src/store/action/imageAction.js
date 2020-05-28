@@ -15,6 +15,42 @@ export const getTag = (props) => {
   };
 };
 
+// 
+export const getImage = (tag) => {
+  return async (dispatch) => {
+
+    axios
+      .get(url + '/image')
+      .then(async (response) => {
+        if (tag) {
+          const itemCategory = response.data.filter(item => {
+            if (item.tags.name === tag) {
+              return item
+            } else {
+              return false
+            }
+          })
+          dispatch({
+            type: "GET_IMAGE",
+            payload: itemCategory,
+          });
+
+        } else {
+          dispatch({
+            type: "GET_IMAGE",
+            payload: response.data
+          })
+        }
+      }).catch(function (error) {
+        console.log(error)
+
+      })
+
+  }
+};
+// 
+
+
 export const handleClick = (props) => {
   return {
     type: 'SHOW_MORE'

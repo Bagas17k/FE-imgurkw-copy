@@ -1,6 +1,6 @@
 /* CSS card content component */
 .card-image {
-    background-color: rgb(104, 97, 97);
+    background-color: #474a51;
     color: white;
     font-size: 16px;
 }
@@ -8,6 +8,11 @@
 .simbol-card {
     font-size: 13px;
     color: lightgray;
+}
+
+.img-title {
+    font-size: 15px;
+    color: #ffffff;
 }
 
 /* CSS home main body */
@@ -39,6 +44,15 @@
     color: white;
 }
 
+/* CSS footer sign */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
 
 
 
@@ -164,6 +178,7 @@
     background-color: hsla(0, 0%, 100%, .25);
     opacity: 40%;
     color: white;
+    top: 9px
 }
 
 .search-button {
@@ -171,6 +186,10 @@
 }
 
 /* CSS card list */
+.card-list {
+    background-color: rgb(23, 21, 68);
+}
+
 .cardlist {
     margin-bottom: -1rem;
 }
@@ -184,6 +203,11 @@
 .show a:hover {
     text-decoration: none;
     color: black;
+}
+
+/* CSS tagcard */
+.card-tag {
+    color: #26606e;
 }
 
 /* CSS drop and drag */

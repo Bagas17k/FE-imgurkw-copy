@@ -16,6 +16,7 @@ const MainRoute = () => {
           <Route exact path="/login" component={Signin} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/upload/image" component={UploadImage} />
+          <Route exact path="/tags/:id" component={Home} />
         </Switch>
       </BrowserRouter>
     </Provider>

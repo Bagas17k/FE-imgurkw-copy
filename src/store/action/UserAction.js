@@ -22,6 +22,7 @@ export const doSignUp = (props) => {
                     type: "SUCCESS_SIGNUP"
                 });
             })
+
             .catch(function (error) {
                 console.log(error);
             });
@@ -31,32 +32,37 @@ export const doSignUp = (props) => {
 };
 
 
-export const doLogin = () => {
+export const doLogin = (props) => {
     return async (dispatch, getState) => {
-
-        await axios({
-                "method": "GET",
-                "url": url + "login",
-                "params": {
-                    username: getState().user.username,
-                    password: getState().user.password,
-                }
-            })
-            .then(async (response) => {
-                console.warn("cek api", response);
-                if (response.data.hasOwnProperty("token")) {
-                    await dispatch({
-                        type: "SUCCESS_LOGIN",
-                        payload: response.data
-                    });
-                    localStorage.setItem("token", response.data.token)
-                    localStorage.setItem("isLogin", true)
-                    localStorage.setItem("status", response.data.status)
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
+        const username = getState().user.username;
+        const password = getState().user.password;
+        try {
+            const response = await axios.get(url + "login", {
+                params: {
+                    username: username,
+                    password: password,
+                },
             });
+            dispatch({
+                type: "SUCCESS_LOGIN",
+                payload: response.data
+            });
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("isLogin", true);
+
+            const token = localStorage.getItem("token");
+
+            const bio = await axios.get(url + "user/member", {
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    Accept: "application/json; charset=utf-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            localStorage.setItem("bio", JSON.stringify(bio.data));
+        } catch (error) {
+            console.log(error);
+        }
     };
 };
 

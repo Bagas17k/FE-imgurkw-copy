@@ -6,7 +6,7 @@ const HeaderSign = (props) => {
   return (
     <div>
       <Row>
-        <Col className="mt-3">
+        <Col className="pt-3">
           <Link to="/">
             <i class="fas fa-info">
               &nbsp;<span className="text-sign">back to imgur</span>
@@ -15,7 +15,7 @@ const HeaderSign = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col className="d-flex justify-content-center my-5">
+        <Col className="d-flex justify-content-center py-5">
           <img src={require("../image/Imgur_logo.svg")} alt="" />
         </Col>
       </Row>

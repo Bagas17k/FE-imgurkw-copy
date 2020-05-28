@@ -1,9 +1,10 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
+import "../style/main.css";
 
 const FooterSign = (props) => {
   return (
-    <div>
+    <div className="footer">
       <Row>
         <Col sm={1}>
           <p className="text-sign">terms</p>

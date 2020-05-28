@@ -5,16 +5,29 @@ import Header from "../component/MainHeader";
 import TagsList from "../component/CardList";
 import { Col, Row, Container } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getTag, handleClick, showLess } from "../store/action/imageAction";
+import {
+  getTag,
+  getImage,
+  handleClick,
+  showLess,
+} from "../store/action/imageAction";
 import { doLogout } from "../store/action/UserAction";
 import "../style/main.css";
 
 class Home extends Component {
-  componentDidMount() {
+  componentDidMount = async () => {
     this.props.getTag();
-  }
+    this.props.getImage();
+    const paramTags = this.props.match.params.category;
+    this.props.getImage(paramTags);
+  };
 
-  listlloop = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  handleRequestTagImage = async (tagName) => {
+    await this.props.history.replace("/tags/" + tagName);
+    const paramTag = this.props.match.params.id;
+    this.props.getImage(paramTag);
+  };
+
   render() {
     return (
       <div>
@@ -24,16 +37,18 @@ class Home extends Component {
           showLess={this.props.showLess}
           numberOfSlice={this.props.numberOfSlice}
           doLogout={this.props.doLogout}
+          getImage={this.props.getImage}
+          handleRouter={this.handleRequestTagImage}
           {...this.props}
         />
         <Header />
         <div className="main-card">
-          <Container>
+          <Container className="pt-5 px-5">
             <Row>
-              {this.listlloop.map((el, index) => {
+              {this.props.listImage.map((el, index) => {
                 return (
                   <Col sm={3} className="d-flex justify-content-center">
-                    <ContentCard />
+                    <ContentCard title={el.img_title} image={el.img_url} />
                   </Col>
                 );
               })}
@@ -51,6 +66,7 @@ const mapStateToProps = (state) => {
     showMore: state.image.showMore,
     numberOfSlice: state.image.numberOfSlice,
     isLogin: state.user.isLogin,
+    listImage: state.image.listImage,
   };
 };
 
@@ -59,5 +75,6 @@ const mapDispatchToProps = {
   handleClick,
   showLess,
   doLogout,
+  getImage,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -5,7 +5,7 @@ import "../style/main.css";
 const Search = (props) => {
   return (
     <div>
-      <InputGroup className="search-bar mb-3 ml-5">
+      <InputGroup className="search-bar mb-3">
         <FormControl
           placeholder="Images, #tags, @users 0h my!"
           aria-label="Recipient's username"

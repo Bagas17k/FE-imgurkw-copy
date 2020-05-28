@@ -5,6 +5,7 @@ import FooterSign from "../component/FooterSign";
 import SymbolSign from "../component/SymbolSign";
 import { connect } from "react-redux";
 import { doSignUp, changeInputUser } from "../store/action/UserAction";
+import { Link } from "react-router-dom";
 import "../style/main.css";
 
 class Signup extends Component {
@@ -17,17 +18,17 @@ class Signup extends Component {
   };
   render() {
     return (
-      <div className="signin text-white">
+      <div className="signin text-white pb-5">
         <Container>
           <HeaderSign />
           <Row>
-            <Col className="d-flex justify-content-center signin-with mt-3">
+            <Col className="d-flex justify-content-center signin-with pt-3">
               <p className="text-sign">Register with</p>
             </Col>
           </Row>
           <SymbolSign />
           <Row>
-            <Col className="d-flex justify-content-center my-1">
+            <Col className="d-flex justify-content-center py-1">
               <p className="text-sign">or with Imgur</p>
             </Col>
           </Row>
@@ -100,7 +101,9 @@ class Signup extends Component {
             <Container className="d-flex justify-content-center ml-5 mt-3">
               <Row>
                 <Col className="d-flex align-items-center" sm={8}>
-                  <p className="option-text">Sign in</p>
+                  <Link to="/login">
+                    <p className="option-text">Sign in</p>
+                  </Link>
                 </Col>
                 <Col sm={4}>
                   <Button

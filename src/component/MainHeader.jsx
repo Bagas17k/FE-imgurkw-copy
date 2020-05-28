@@ -11,7 +11,7 @@ const Header = (props) => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>
-          <Link>
+          <Link to="/">
             <img src={require("../image/imgurup.png")} alt="" />
           </Link>
         </Navbar.Brand>
@@ -23,7 +23,7 @@ const Header = (props) => {
             <div>{/* <Search /> */}</div>
           </Nav.Link>
         </Nav>
-        <Nav className="mr-auto">
+        <Nav>
           <Nav.Link className="Link">
             <div>
               <Newest />
