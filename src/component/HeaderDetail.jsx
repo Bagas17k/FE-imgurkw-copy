@@ -2,15 +2,16 @@ import React from "react";
 import Search from "../component/Search";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import DropDownHome from "../component/DropdownHeaderHome";
+import DropDownDetail from "../component/DropDownDetail";
+import BackToTop from "react-back-to-top-button";
 import "../style/main.css";
 
-const TopHeader = (props) => {
+const HeaderDetail = (props) => {
   const isLogin = localStorage.getItem("isLogin");
 
   return (
     <div>
-      <Navbar bg="dark" expand="lg">
+      <Navbar className="mb-5" bg="dark" expand="lg">
         <Link to="/" onClick={props.getImage ? () => props.getImage() : null}>
           <img
             id="logo-header"
@@ -37,11 +38,13 @@ const TopHeader = (props) => {
                 </Link>
               )}
             </Nav.Link>
-            <Nav.Link className="align-self-center">
-              <div>
-                <Search />
-              </div>
-            </Nav.Link>
+            {isLogin ? null : (
+              <Nav.Link className="align-self-center">
+                <div>
+                  <Search />
+                </div>
+              </Nav.Link>
+            )}
           </Nav>
           {isLogin ? (
             <Nav className="d-flex justify-content-center">
@@ -52,7 +55,7 @@ const TopHeader = (props) => {
               </Nav.Link>
               <Nav.Link className="align-self-center">
                 <div>
-                  <i class="far fa-comment-alt text-white"></i>
+                  <i class="far fa-comment-dots text-white"></i>{" "}
                 </div>
               </Nav.Link>
               <Nav.Link className="align-self-center">
@@ -60,9 +63,10 @@ const TopHeader = (props) => {
                   <i class="far fa-bell text-white"></i>
                 </div>
               </Nav.Link>
-
               <Nav.Link className="align-self-center">
-                <DropDownHome doLogout={props.doLogout} {...props} />
+                <div>
+                  <DropDownDetail doLogout={props.doLogout} {...props} />
+                </div>
               </Nav.Link>
             </Nav>
           ) : (
@@ -82,7 +86,7 @@ const TopHeader = (props) => {
               <Nav.Link className="align-self-center">
                 <Link to="/signup">
                   <div>
-                    <Button variant="success">SIGN UP</Button>
+                    <Button variant="dark">SIGN UP</Button>
                   </div>
                 </Link>
               </Nav.Link>
@@ -90,8 +94,12 @@ const TopHeader = (props) => {
           )}
         </Navbar.Collapse>
       </Navbar>
+      <BackToTop showOn showAt={100} speed={1000} easing="easeInOutQuint">
+        <span className="text-white">
+          <i class="fas fa-arrow-up"></i>
+        </span>
+      </BackToTop>
     </div>
   );
 };
-
-export default TopHeader;
+export default HeaderDetail;

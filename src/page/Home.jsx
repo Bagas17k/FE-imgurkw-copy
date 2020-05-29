@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import {
   getTag,
   getImage,
+  getImageById,
   handleClick,
   showLess,
 } from "../store/action/imageAction";
@@ -17,15 +18,19 @@ import "../style/main.css";
 class Home extends Component {
   componentDidMount = async () => {
     this.props.getTag();
+    this.props.getImage(this.props.match.params.id);
     this.props.getImage();
-    const paramTags = this.props.match.params.category;
-    this.props.getImage(paramTags);
   };
 
-  handleRequestTagImage = async (tagName) => {
-    await this.props.history.replace("/tags/" + tagName);
+  handleRequestTagImage = async (id) => {
+    await this.props.history.replace("/tags/" + id);
     const paramTag = this.props.match.params.id;
     this.props.getImage(paramTag);
+  };
+
+  handleRequestImageId = async (id) => {
+    await this.props.history.replace("/image/detail/" + id);
+    this.props.getImageById(id);
   };
 
   render() {
@@ -38,7 +43,7 @@ class Home extends Component {
           numberOfSlice={this.props.numberOfSlice}
           doLogout={this.props.doLogout}
           getImage={this.props.getImage}
-          handleRouter={this.handleRequestTagImage}
+          handleRequestTagImage={(id) => this.handleRequestTagImage(id)}
           {...this.props}
         />
         <Header />
@@ -48,7 +53,15 @@ class Home extends Component {
               {this.props.listImage.map((el, index) => {
                 return (
                   <Col sm={3} className="d-flex justify-content-center">
-                    <ContentCard title={el.img_title} image={el.img_url} />
+                    <ContentCard
+                      title={el.img_title}
+                      image={el.img_url}
+                      id={el.id}
+                      handleRequestImageId={(id) =>
+                        this.handleRequestImageId(id)
+                      }
+                      {...this.props}
+                    />
                   </Col>
                 );
               })}
@@ -76,5 +89,6 @@ const mapDispatchToProps = {
   showLess,
   doLogout,
   getImage,
+  getImageById,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

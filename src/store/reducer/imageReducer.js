@@ -1,6 +1,9 @@
 const initialAtate = {
     listTag: [],
     listImage: [],
+    imageID: [],
+    userId: [],
+    tagId: [],
     showMore: false
 
 }
@@ -17,22 +20,29 @@ export default function imageReducer(state = initialAtate, action) {
                     ...state,
                     listImage: action.payload
                 }
-                case 'SHOW_MORE':
+                case 'GET_IMAGE_ID':
                     return {
                         ...state,
-                        showMore: true
+                        imageID: action.payload,
+                            userId: action.user,
+                            tagId: action.tag
                     }
-                    case 'SHOW_LESS':
+                    case 'SHOW_MORE':
                         return {
                             ...state,
-                            showMore: false
+                            showMore: true
                         }
-                        case 'CHANGE_IMAGE_TYPE':
+                        case 'SHOW_LESS':
                             return {
                                 ...state,
-                                [action.payload.target.name]: action.payload.target.files[0]
+                                showMore: false
                             }
-                            default:
-                                return state
+                            case 'CHANGE_IMAGE_TYPE':
+                                return {
+                                    ...state,
+                                    [action.payload.target.name]: action.payload.target.files[0]
+                                }
+                                default:
+                                    return state
     }
 }

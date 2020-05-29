@@ -3,16 +3,17 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const TagCard = (props, changeRouter) => {
-  changeRouter = async (tag) => {
-    if (props.handleTag) {
-      props.handleTag(tag);
+  console.log("prooppss", props);
+  changeRouter = async (id) => {
+    if (props.handleRequestTagImage) {
+      props.handleRequestTagImage(id);
     } else {
-      await props.history.replace("/tags/" + tag);
+      await props.history.replace("/tags/" + id);
     }
   };
   return (
     <div>
-      <Link onClick={() => changeRouter(props.name)}>
+      <Link onClick={() => changeRouter(props.id)} value={props.id}>
         <Card style={{ width: "15rem" }} className="card-tag mr-auto mb-2">
           <Card.Img
             variant="top"

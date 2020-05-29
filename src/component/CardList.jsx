@@ -43,9 +43,12 @@ const TagsList = (props) => {
               return (
                 <Col className="d-flex justify-content-center" sm={3}>
                   <TagCard
-                    handleTag={props.handleRouter}
+                    handleRequestTagImage={(id) =>
+                      props.handleRequestTagImage(id)
+                    }
                     name={el.name}
                     img={el.img_url}
+                    id={el.id}
                     {...props}
                   />
                 </Col>

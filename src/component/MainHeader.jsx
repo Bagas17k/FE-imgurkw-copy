@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import MostViral from "../component/MostViral";
 import Newest from "../component/Newest";
 // import Search from "../component/Search";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import BackToTop from "react-back-to-top-button";
 
 const Header = (props) => {
@@ -11,9 +11,7 @@ const Header = (props) => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>
-          <Link to="/">
-            <img src={require("../image/imgurup.png")} alt="" />
-          </Link>
+          <img src={require("../image/imgurup.png")} alt="" />
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link className="align-self-center">

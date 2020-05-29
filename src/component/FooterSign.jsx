@@ -4,7 +4,7 @@ import "../style/main.css";
 
 const FooterSign = (props) => {
   return (
-    <div className="footer">
+    <div className="footer-sign pt-4 pl-5">
       <Row>
         <Col sm={1}>
           <p className="text-sign">terms</p>

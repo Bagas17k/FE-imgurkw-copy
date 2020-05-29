@@ -6,7 +6,7 @@ import Home from "../page/Home";
 import Signin from "../page/SignIn";
 import Signup from "../page/SignUp";
 import UploadImage from "../page/UploadImage";
-
+import PageDetail from "../page/PageDetail";
 const MainRoute = () => {
   return (
     <Provider store={store}>
@@ -17,6 +17,7 @@ const MainRoute = () => {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/upload/image" component={UploadImage} />
           <Route exact path="/tags/:id" component={Home} />
+          <Route exact path="/image/detail/:id" component={PageDetail} />
         </Switch>
       </BrowserRouter>
     </Provider>

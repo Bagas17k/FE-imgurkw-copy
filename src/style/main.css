@@ -45,7 +45,7 @@
 }
 
 /* CSS footer sign */
-.footer {
+.footer-sign {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -219,4 +219,47 @@
 .browse-image {
     height: 272px;
     background-color: #3c424b;
+}
+
+/*  CSS for topheader */
+.signin-text {
+    color: white;
+}
+
+.signin-text:hover {
+    text-decoration: none;
+}
+
+/* CSS header sign */
+.text-sign {
+    color: white;
+}
+
+/* CSS page detail */
+.fb-detail {
+    color: #45619d;
+}
+
+.twt-detail {
+    color: #55acee;
+}
+
+.pint-detail {
+    color: #db2b42;
+}
+
+.reddit-detail {
+    color: #f54b00;
+}
+
+.form-comment {
+    background-color: transparent;
+    border: 0px solid;
+}
+
+.form-comment:focus {
+    border-color: rgba(100, 100, 100, 1) !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
 }

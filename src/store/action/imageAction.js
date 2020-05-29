@@ -16,20 +16,22 @@ export const getTag = (props) => {
 };
 
 // 
-export const getImage = (tag) => {
+export const getImage = (id) => {
   return async (dispatch) => {
 
     axios
       .get(url + '/image')
       .then(async (response) => {
-        if (tag) {
+        if (id) {
           const itemCategory = response.data.filter(item => {
-            if (item.tags.name === tag) {
+            console.log('sasasas', item.tag_id, id)
+            if (item.tag_id === parseInt(id)) {
               return item
             } else {
               return false
             }
           })
+          console.log('cek isi', itemCategory)
           dispatch({
             type: "GET_IMAGE",
             payload: itemCategory,
@@ -49,6 +51,22 @@ export const getImage = (tag) => {
   }
 };
 // 
+
+export const getImageById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(url + '/image/' + id)
+      dispatch({
+        type: 'GET_IMAGE_ID',
+        payload: response.data,
+        user: response.data.user,
+        tag: response.data.tag
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 
 export const handleClick = (props) => {

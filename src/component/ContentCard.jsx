@@ -3,9 +3,19 @@ import { Card, Row, Col, Container } from "react-bootstrap";
 import "../style/main.css";
 
 const ContentCard = (props) => {
+  const changeRouterId = async (id) => {
+    if (props.handleRequestImageId) {
+      props.handleRequestImageId(id);
+    }
+  };
   return (
     <div>
-      <Card style={{ width: "16rem" }} className="card-image my-1">
+      <Card
+        onClick={() => changeRouterId(props.id)}
+        value={props.id}
+        style={{ width: "16rem" }}
+        className="card-image my-1"
+      >
         <Card.Img
           variant="top"
           height={"200px"}

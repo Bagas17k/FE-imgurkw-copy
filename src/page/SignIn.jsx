@@ -19,8 +19,8 @@ class Signin extends Component {
   render() {
     return (
       <div className="signin text-white">
+        <HeaderSign />
         <Container>
-          <HeaderSign />
           <Row>
             <Col className="d-flex justify-content-center signin-with pt-3">
               <p className="text-sign">Sign In with</p>
@@ -70,7 +70,7 @@ class Signin extends Component {
               <Row>
                 <Col className="d-flex align-items-center" sm={8}>
                   <Link to="/signup">
-                    <p className="option-text">need an account?</p>
+                    <p className="option-text text-sign">need an account?</p>
                   </Link>
                 </Col>
                 <Col sm={4}>
