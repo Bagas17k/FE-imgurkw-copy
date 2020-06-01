@@ -20,7 +20,12 @@ export const getImage = (id) => {
   return async (dispatch) => {
 
     axios
-      .get(url + '/image')
+      .get(url + '/image', {
+        'params': {
+          'orderby': 'created_at',
+          'sort': 'desc'
+        }
+      })
       .then(async (response) => {
         if (id) {
           const itemCategory = response.data.filter(item => {
@@ -109,6 +114,47 @@ export const postKomen = (id) => {
   }
 }
 
+export const postImage = () => {
+  return async (dispatch, getState) => {
+    const imageForm = new FormData();
+    imageForm.append('img_title', getState().image.img_title);
+    imageForm.append('img_url', getState().image.img_url);
+    imageForm.append('deskripsi', getState().image.deskripsi);
+    imageForm.append('tag_id', parseInt(getState().image.tag_id));
+    const token = localStorage.getItem('token')
+    const img = getState().image.img_url
+
+    if (typeof (img) === 'string') {
+
+      try {
+        await axios.post(url + '/image/string', imageForm, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+      } catch (error) {
+        console.log(error)
+      }
+
+    } else {
+
+      try {
+        await axios.post(url + '/image', imageForm, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+}
+
 
 export const handleClick = (props) => {
   return {
@@ -125,6 +171,13 @@ export const showLess = (props) => {
 export const changeInputImage = (e) => {
   return {
     type: "CHANGE_IMAGE_TYPE",
+    payload: e,
+  }
+}
+
+export const changeInput = (e) => {
+  return {
+    type: "CHANGE_INPUT",
     payload: e,
   }
 }

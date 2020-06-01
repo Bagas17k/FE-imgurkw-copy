@@ -53,7 +53,12 @@ export default function imageReducer(state = initialAtate, action) {
                                             ...state,
                                             [action.payload.target.name]: action.payload.target.files[0]
                                         }
-                                        default:
-                                            return state
+                                        case 'CHANGE_INPUT':
+                                            return {
+                                                ...state,
+                                                [action.payload.target.name]: action.payload.target.value
+                                            }
+                                            default:
+                                                return state
     }
 }

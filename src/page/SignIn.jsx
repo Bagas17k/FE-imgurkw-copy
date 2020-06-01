@@ -18,79 +18,81 @@ class Signin extends Component {
   };
   render() {
     return (
-      <div className="signin text-white">
-        <HeaderSign />
-        <Container>
-          <Row>
-            <Col className="d-flex justify-content-center signin-with pt-3">
-              <p className="text-sign">Sign In with</p>
-            </Col>
-          </Row>
-          <SymbolSign />
-          <Row>
-            <Col className="d-flex justify-content-center py-1">
-              <p className="text-sign">or with Imgur</p>
-            </Col>
-          </Row>
-          <Row>
-            <Container className="d-flex justify-content-center">
-              <Row>
-                <Card className="card-form-signin">
-                  <Card.Body>
-                    <Form
-                      className="form-signin"
-                      onSubmit={(e) => e.preventDefault()}
+      <React.Fragment>
+        <div className="signin text-white">
+          <HeaderSign />
+          <Container>
+            <Row>
+              <Col className="d-flex justify-content-center signin-with pt-3">
+                <p className="text-sign">Sign In with</p>
+              </Col>
+            </Row>
+            <SymbolSign />
+            <Row>
+              <Col className="d-flex justify-content-center py-1">
+                <p className="text-sign">or with Imgur</p>
+              </Col>
+            </Row>
+            <Row>
+              <Container className="d-flex justify-content-center">
+                <Row>
+                  <Card className="card-form-signin">
+                    <Card.Body>
+                      <Form
+                        className="form-signin"
+                        onSubmit={(e) => e.preventDefault()}
+                      >
+                        <Form.Group controlId="formGroupEmail">
+                          <Form.Control
+                            className="form-mark"
+                            type="text"
+                            name="username"
+                            onChange={(e) => this.props.changeInput(e)}
+                            placeholder="Username or email"
+                          />
+                        </Form.Group>
+                        <Form.Group controlId="formGroupPassword">
+                          <Form.Control
+                            className="form-mark"
+                            type="password"
+                            name="password"
+                            onChange={(e) => this.props.changeInput(e)}
+                            placeholder="Password"
+                          />
+                        </Form.Group>
+                      </Form>
+                    </Card.Body>
+                  </Card>
+                </Row>
+              </Container>
+            </Row>
+            <Row>
+              <Container className="d-flex justify-content-center pl-5 pt-3">
+                <Row>
+                  <Col className="d-flex align-items-center" sm={8}>
+                    <Link to="/signup">
+                      <p className="option-text text-sign">need an account?</p>
+                    </Link>
+                  </Col>
+                  <Col sm={4}>
+                    <Button
+                      onClick={() => this.postLogin()}
+                      className="button-text"
+                      variant="primary"
                     >
-                      <Form.Group controlId="formGroupEmail">
-                        <Form.Control
-                          className="form-mark"
-                          type="text"
-                          name="username"
-                          onChange={(e) => this.props.changeInput(e)}
-                          placeholder="Username or email"
-                        />
-                      </Form.Group>
-                      <Form.Group controlId="formGroupPassword">
-                        <Form.Control
-                          className="form-mark"
-                          type="password"
-                          name="password"
-                          onChange={(e) => this.props.changeInput(e)}
-                          placeholder="Password"
-                        />
-                      </Form.Group>
-                    </Form>
-                  </Card.Body>
-                </Card>
-              </Row>
-            </Container>
-          </Row>
-          <Row>
-            <Container className="d-flex justify-content-center pl-5 pt-3">
-              <Row>
-                <Col className="d-flex align-items-center" sm={8}>
-                  <Link to="/signup">
-                    <p className="option-text text-sign">need an account?</p>
-                  </Link>
-                </Col>
-                <Col sm={4}>
-                  <Button
-                    onClick={() => this.postLogin()}
-                    className="button-text"
-                    variant="primary"
-                  >
-                    Sign In
-                  </Button>{" "}
-                </Col>
-              </Row>
-            </Container>
-          </Row>
+                      Sign In
+                    </Button>{" "}
+                  </Col>
+                </Row>
+              </Container>
+            </Row>
 
-          <Row className="pt-5">
-            <FooterSign />
-          </Row>
-        </Container>
-      </div>
+            <Row className="pt-5">
+              <FooterSign />
+            </Row>
+          </Container>
+        </div>
+      </React.Fragment>
     );
   }
 }

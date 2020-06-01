@@ -37,7 +37,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <TagsList
           tag={this.props.tag}
           handleClick={this.props.handleClick}
@@ -71,7 +71,7 @@ class Home extends Component {
           </Container>
           <Footer />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

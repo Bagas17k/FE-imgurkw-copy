@@ -318,3 +318,34 @@
 .timeKomen {
     font-size: 12px;
 }
+
+/* CSS post image */
+.all-post-image {
+    background-color: #141518;
+}
+
+.form-image {
+    width: 710px;
+}
+
+.post-zone {
+    background-color: #2c2f34;
+    color: white;
+}
+
+.image-title {
+    background-color: #2c2f34;
+    height: 50px;
+}
+
+.preview {
+    background-color: #2c2f34;
+}
+
+.choice-upload {
+    background-color: #2c2f34;
+}
+
+.choice-upload span {
+    font-size: 14px;
+}
