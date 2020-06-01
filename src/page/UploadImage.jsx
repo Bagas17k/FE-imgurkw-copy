@@ -7,7 +7,7 @@ class UploadImage extends Component {
   render() {
     return (
       <div>
-        <DragAndDrop changeInput={this.props.changeInput} />
+        <DragAndDrop changeInput={(e) => this.changeInput(e)} {...this.props} />
       </div>
     );
   }

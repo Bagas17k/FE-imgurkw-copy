@@ -4,45 +4,56 @@ const initialAtate = {
     imageID: [],
     userId: [],
     tagId: [],
+    komenList: [],
     showMore: false
 
 }
 
 export default function imageReducer(state = initialAtate, action) {
     switch (action.type) {
-        case 'GET_TAG':
+        case 'CHANGE_KOMEN_TYPE':
             return {
                 ...state,
-                listTag: action.payload
+                [action.payload.target.name]: action.payload.target.value,
             }
-            case 'GET_IMAGE':
+            case 'GET_TAG':
                 return {
                     ...state,
-                    listImage: action.payload
+                    listTag: action.payload
                 }
-                case 'GET_IMAGE_ID':
+                case 'GET_IMAGE':
                     return {
                         ...state,
-                        imageID: action.payload,
-                            userId: action.user,
-                            tagId: action.tag
+                        listImage: action.payload
                     }
-                    case 'SHOW_MORE':
+                    case 'GET_IMAGE_ID':
                         return {
                             ...state,
-                            showMore: true
+                            imageID: action.payload,
+                                userId: action.user,
+                                tagId: action.tag
                         }
-                        case 'SHOW_LESS':
+                        case 'GET_KOMEN':
                             return {
                                 ...state,
-                                showMore: false
+                                komenList: action.payload
                             }
-                            case 'CHANGE_IMAGE_TYPE':
+                            case 'SHOW_MORE':
                                 return {
                                     ...state,
-                                    [action.payload.target.name]: action.payload.target.files[0]
+                                    showMore: true
                                 }
-                                default:
-                                    return state
+                                case 'SHOW_LESS':
+                                    return {
+                                        ...state,
+                                        showMore: false
+                                    }
+                                    case 'CHANGE_IMAGE_TYPE':
+                                        return {
+                                            ...state,
+                                            [action.payload.target.name]: action.payload.target.files[0]
+                                        }
+                                        default:
+                                            return state
     }
 }

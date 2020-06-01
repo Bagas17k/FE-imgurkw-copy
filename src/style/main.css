@@ -263,3 +263,58 @@
     -moz-box-shadow: none !important;
     box-shadow: none !important;
 }
+
+.cardDetail {
+    background-color: #2c2f34;
+}
+
+.formKomen {
+    background-color: #2c2f34;
+
+}
+
+.formKomen:focus {
+    background-color: #2c2f34 !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.pageDetail {
+    background-color: #141518;
+}
+
+.grs {
+    border: 1px solid white;
+}
+
+.tabelDetail {
+    background-color: #2c2f34;
+
+}
+
+.loveImgur {
+    font-size: 20px;
+}
+
+.choiceDetail {
+    font-size: 15px;
+}
+
+.dotDetail {
+    color: #80807c;
+
+}
+
+.fa-circle {
+    font-size: 12px;
+}
+
+
+.userPost {
+    font-size: 12px;
+}
+
+.timeKomen {
+    font-size: 12px;
+}

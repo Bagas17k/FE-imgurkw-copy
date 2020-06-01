@@ -9,6 +9,7 @@ import {
   getTag,
   getImage,
   getImageById,
+  getKomen,
   handleClick,
   showLess,
 } from "../store/action/imageAction";
@@ -31,6 +32,7 @@ class Home extends Component {
   handleRequestImageId = async (id) => {
     await this.props.history.replace("/image/detail/" + id);
     this.props.getImageById(id);
+    this.props.getKomen(id);
   };
 
   render() {
@@ -90,5 +92,6 @@ const mapDispatchToProps = {
   doLogout,
   getImage,
   getImageById,
+  getKomen,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

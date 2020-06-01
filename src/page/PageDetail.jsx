@@ -12,8 +12,14 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { doLogout } from "../store/action/UserAction";
-import { getImageById } from "../store/action/imageAction";
+import {
+  getImageById,
+  getKomen,
+  changeInputKomen,
+  postKomen,
+} from "../store/action/imageAction";
 import HeaderDetail from "../component/HeaderDetail";
+import Komen from "../component/Komen";
 import { Link } from "react-router-dom";
 import "../style/main.css";
 
@@ -21,55 +27,73 @@ class PageDetail extends Component {
   isLogin = localStorage.getItem("isLogin");
   componentDidMount() {
     this.props.getImageById(this.props.match.params.id);
+    this.props.getKomen(this.props.match.params.id);
   }
+  postKomen = async (id) => {
+    if (this.props.postKomen) {
+      await this.props.postKomen(id);
+      this.props.getKomen(id);
+      document.getElementById("formKomen").value = "";
+    }
+  };
 
   render() {
     console.warn("detail", this.props);
     return (
-      <div>
+      <div className="pageDetail">
         <HeaderDetail doLogout={this.doLogout} {...this.props} />
         <Container>
           <Row>
             <Col sm={8}>
               <Row>
-                <Card style={{ width: "900px" }}>
-                  <Card.Body>
-                    <Container>
-                      <Row>
-                        <Col sm={8}>
-                          <Card.Title>
-                            {this.props.imageID.img_title}
-                          </Card.Title>
-                          <Row>
-                            <Col>
-                              <Card.Text>
-                                by {this.props.user.username}
-                              </Card.Text>
-                            </Col>
-                            <Card.Text>
-                              {moment(this.props.created).fromNow()}
-                            </Card.Text>
-                            <Col></Col>
-                          </Row>
-                        </Col>
-                        <Col className="d-flex justify-content-end" sm={4}>
-                          <Row>
-                            <Col className="mr-1" sm={2}>
-                              <Button variant="dark">
-                                <i class="fas fa-chevron-left"></i>
-                              </Button>{" "}
-                            </Col>
-                            <Col sm={9}>
-                              <Button variant="primary">
-                                Next Post&nbsp;
-                                <i class="fas fa-chevron-right"></i>
-                              </Button>{" "}
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Card.Body>
+                <div className="mb-4">
+                  <img
+                    src={require("../image/iklan2.png")}
+                    width="760px"
+                    alt="iklan"
+                  />
+                </div>
+                <div
+                  className="cardDetail text-white header"
+                  style={{ width: "900px" }}
+                  id="myHeader"
+                >
+                  <Container className="my-3">
+                    <Row>
+                      <Col sm={8}>
+                        <Card.Title>{this.props.imageID.img_title}</Card.Title>
+                        <Row className="userPost">
+                          <Col sm={3}>
+                            <Card.Text>by {this.props.user.username}</Card.Text>
+                          </Col>
+                          <Card.Text>
+                            {moment(this.props.created).fromNow()}
+                          </Card.Text>
+                          <Col></Col>
+                        </Row>
+                      </Col>
+                      <Col className="d-flex justify-content-end" sm={4}>
+                        <Row>
+                          <Col className="mr-1" sm={2}>
+                            <Button variant="dark">
+                              <i class="fas fa-chevron-left"></i>
+                            </Button>{" "}
+                          </Col>
+                          <Col sm={9}>
+                            <Button variant="primary">
+                              Next Post&nbsp;
+                              <i class="fas fa-chevron-right"></i>
+                            </Button>{" "}
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+                <Card
+                  className="cardDetail text-white"
+                  style={{ width: "900px" }}
+                >
                   <Card.Img variant="top" src={this.props.imageID.img_url} />
                   <Card.Body>
                     <Container>
@@ -131,6 +155,11 @@ class PageDetail extends Component {
                             <span className="mr-3">1,710 Points</span>
                             <span className="ml-3">57,547 Views</span>
                           </Card.Text>
+                          <Card.Text>
+                            <Badge pill variant="danger">
+                              {this.props.tag.name}
+                            </Badge>
+                          </Card.Text>
                         </div>
                       ) : (
                         <Card.Text>
@@ -143,14 +172,20 @@ class PageDetail extends Component {
                   </Card.Body>
                 </Card>
 
-                <div className="w-100 mt-3 border">
+                <div className="w-100 mt-3 border formKomen text-white">
                   {this.isLogin ? (
                     <Container className="my-2">
-                      <Form>
-                        <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form onSubmit={(e) => e.preventDefault()}>
+                        <Form.Group
+                          className="formKomen"
+                          controlId="exampleForm.ControlInput1"
+                        >
                           <Form.Control
-                            className="form-comment mb-3"
+                            id="formKomen"
+                            className="form-comment mb-3 formKomen text-white"
                             type="text"
+                            name="komen"
+                            onChange={(e) => this.props.changeInputKomen(e)}
                             placeholder="Write a comment"
                           />
                         </Form.Group>
@@ -168,6 +203,10 @@ class PageDetail extends Component {
                               className="ml-1"
                               variant="secondary"
                               type="submit"
+                              onClick={() =>
+                                this.postKomen(this.props.imageID.id)
+                              }
+                              value={this.props.imageID.id}
                             >
                               Post
                             </Button>
@@ -199,9 +238,9 @@ class PageDetail extends Component {
                   )}
                 </div>
               </Row>
-              <div className="d-flex justify-content-between mt-3">
+              <div className="d-flex justify-content-between mt-3 text-white">
                 <div>
-                  <span>COMMENTS</span>
+                  <span>{this.props.komen.length} COMMENTS</span>
                 </div>
                 <div>
                   <span className="mr-2">
@@ -212,9 +251,18 @@ class PageDetail extends Component {
                   </span>
                 </div>
               </div>
+              {this.props.komen.map((el, index) => {
+                return (
+                  <Komen
+                    komen={el.komen}
+                    user={el.user.username}
+                    created={el.created_at}
+                  />
+                );
+              })}
             </Col>
             <Col sm={4}>
-              <Row>
+              <Row className="mb-3 text-white">
                 <Col sm={8}>
                   <div>
                     <span>MOST VIRAL IMAGE</span>
@@ -222,7 +270,7 @@ class PageDetail extends Component {
                     <span>newest first</span>
                   </div>
                 </Col>
-                <Col sm={4}>
+                <Col className="ml-auto" sm={4}>
                   <div>
                     <i class="fas fa-list-ul mr-1"></i>
                     <i class="fas fa-th ml-1"></i>
@@ -230,12 +278,36 @@ class PageDetail extends Component {
                 </Col>
               </Row>
               <div>
-                <Table striped bordered hover>
+                <Table
+                  striped
+                  bordered
+                  hover
+                  className="tabelDetail text-white"
+                >
                   <tr>
                     <td>
                       <Row>
                         <Col sm={4}>
                           <img
+                            className="mr-1"
+                            src={this.props.imageID.img_url}
+                            width={"113px"}
+                            height={"80px"}
+                            alt="g1"
+                          />
+                        </Col>
+                        <Col sm={8}>
+                          <span>{this.props.imageID.img_title}</span>
+                        </Col>
+                      </Row>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Row>
+                        <Col sm={4}>
+                          <img
+                            className="mr-1"
                             src={require("../image/detail1.jpg")}
                             width={"113px"}
                             height={"80px"}
@@ -253,6 +325,7 @@ class PageDetail extends Component {
                       <Row>
                         <Col sm={4}>
                           <img
+                            className="mr-1"
                             src={require("../image/detail1.jpg")}
                             width={"113px"}
                             height={"80px"}
@@ -270,23 +343,7 @@ class PageDetail extends Component {
                       <Row>
                         <Col sm={4}>
                           <img
-                            src={require("../image/detail1.jpg")}
-                            width={"113px"}
-                            height={"80px"}
-                            alt="g1"
-                          />
-                        </Col>
-                        <Col sm={8}>
-                          <span>Mini dump for a late night dump</span>
-                        </Col>
-                      </Row>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Row>
-                        <Col sm={4}>
-                          <img
+                            className="mr-1"
                             src={require("../image/detail1.jpg")}
                             width={"113px"}
                             height={"80px"}
@@ -302,20 +359,24 @@ class PageDetail extends Component {
                 </Table>
                 <img src={require("../image/iklan.png")} alt="iklan" cclas />
               </div>
-              <hr />
-              <Container>
-                <div>
-                  <span>Love Imgur? Join our team!</span>
+              <hr className="grs" />
+              <Container className="choiceDetail text-white mb-5">
+                <span className="loveImgur mb-4">
+                  Love Imgur? Join our team!
+                </span>
+                <div className="dotDetail">
                   <br />
                   <span>
-                    about&nbsp;<i class="fas fa-circle">&nbsp;</i>emerald&nbsp;
+                    about&nbsp;<i class="ml-2 fas fa-circle">&nbsp;</i>
+                    emerald&nbsp;
                     <i class="fas fa-circle">&nbsp;</i>store&nbsp;
                     <i class="fas fa-circle">&nbsp;</i>help&nbsp;
                     <i class="fas fa-circle">&nbsp;</i>blog
                   </span>
                   <br />
                   <span>
-                    terms&nbsp;<i class="fas fa-circle">&nbsp;</i>privacy&nbsp;
+                    terms&nbsp;<i class="ml-2 fas fa-circle">&nbsp;</i>
+                    privacy&nbsp;
                     <i class="fas fa-circle">&nbsp;</i>ccpa&nbsp;
                     <i class="fas fa-circle">&nbsp;</i>apps&nbsp;
                     <i class="fas fa-circle">&nbsp;</i>api
@@ -323,13 +384,13 @@ class PageDetail extends Component {
                   <br />
                   <span>
                     advertise&nbsp;
-                    <i class="fas fa-circle">&nbsp;</i>ad choices &nbsp;
+                    <i class="ml-2 fas fa-circle">&nbsp;</i>ad choices &nbsp;
                     <i class="fas fa-circle">&nbsp;</i>&nbsp;reposrt ad
                   </span>
                   <br />
                   <span>
                     requests deletion&nbsp;
-                    <i class="fas fa-circle">&nbsp;</i>community rules
+                    <i class="ml-2 fas fa-circle">&nbsp;</i>community rules
                   </span>
                   <br />
                 </div>
@@ -348,11 +409,15 @@ const mapStateToProps = (state) => {
     created: state.image.imageID.created_at,
     user: state.image.userId,
     tag: state.image.tagId,
+    komen: state.image.komenList,
   };
 };
 
 const mapDispatchToProps = {
   doLogout,
   getImageById,
+  getKomen,
+  changeInputKomen,
+  postKomen,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PageDetail);
